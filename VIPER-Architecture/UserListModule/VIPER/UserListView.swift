@@ -12,15 +12,15 @@ import UIKit
 // Protocol
 // Reference presenter
 
-protocol AnyView {
-    var presenter: AnyPresenter? { get set }
+protocol AnyUserListView {
+    var presenter: AnyUserListPresenter? { get set }
     
     func update(with users: [User])
     func update(with error: String)
 }
 
-class UserViewController: UIViewController, AnyView, UITableViewDelegate, UITableViewDataSource {
-    var presenter: AnyPresenter?
+class UserListViewController: UIViewController, AnyUserListView, UITableViewDelegate, UITableViewDataSource {
+    var presenter: AnyUserListPresenter?
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -83,4 +83,14 @@ class UserViewController: UIViewController, AnyView, UITableViewDelegate, UITabl
         cell.textLabel?.text = users[indexPath.row].name
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.users[indexPath.row]
+        presenter?.showUserDetail(user)
+    }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let user = self.users[indexPath.row]
+//        presenter?.showTodoDetail(todo)
+//    }
 }

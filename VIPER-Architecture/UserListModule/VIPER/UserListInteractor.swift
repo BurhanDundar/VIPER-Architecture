@@ -13,15 +13,15 @@ import Foundation
 
 // https://jsonplaceholder.typicode.com/users
 
-protocol AnyInteractor {
-    var presenter: AnyPresenter? { get set }
+protocol AnyUserListInteractor {
+    var presenter: AnyUserListPresenter? { get set }
     
     func getUsers()
 }
 
-class UserInteractor: AnyInteractor {
+class UserListInteractor: AnyUserListInteractor {
     
-    var presenter: AnyPresenter?
+    var presenter: AnyUserListPresenter?
     
     func getUsers() {
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/users") else { return }

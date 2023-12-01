@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let userRouter = UserRouter.start()
+        let userRouter = UserListRouter.start()
         
         let initialVC = userRouter.entry
         
